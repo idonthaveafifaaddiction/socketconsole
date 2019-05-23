@@ -36,7 +36,10 @@ class SocketDumper(threading.Thread):
             for i, (var, val) in enumerate(stack_locals):
                 if i == self.locals_limit:
                     break
-                code.append("  %s: %r\n" % (var, val))
+                try:
+                    code.append("  %s: %r\n" % (var, val))
+                except:
+                    pass
         return code
 
     def run(self):
